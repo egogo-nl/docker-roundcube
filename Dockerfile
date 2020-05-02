@@ -11,7 +11,7 @@ RUN apt-get update && \
     apt-get install -y vim && \
     # Install Requirements
     apt-get install -y apache2 ca-certificates && \
-    apt-get install -y php7.0 php-pear php7.0-mysql php7.0-pgsql php7.0-sqlite php7.0-mcrypt php7.0-intl php7.0-ldap && \
+    apt-get install -y php7.0 php-pear php7.0-mysql php7.0-pgsql php7.0-sqlite php7.0-mcrypt php7.0-intl php7.0-ldap php7.0-mbstring && \
     # Install Pear Requirements
     pear install mail_mime mail_mimedecode net_smtp net_idna2-beta auth_sasl net_sieve crypt_gpg && \
     # Cleanup
