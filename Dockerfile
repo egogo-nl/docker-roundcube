@@ -25,12 +25,15 @@ RUN rm /etc/apache2/conf-enabled/* /etc/apache2/sites-enabled/* && \
 
 # Install Code from Git
 RUN apt-get update && \
-    apt-get install -y git && \
+    apt-get install -y curl && \
     rm -rf /var/www/html/* && \
-    cd /var/www/html && curl https://github.com/roundcube/roundcubemail/releases/download/$ROUNDCUBE_VERSION/roundcubemail-$ROUNDCUBE_VERSION-complete.tar.gz . && \
-    tar -xvf roundcubemail-$ROUNDCUBE_VERSION-complete.tar.gz && rm -rf installer .git && \
+    curl -fL -o /tmp/roundcube.tar.gz \
+         https://github.com/roundcube/roundcubemail/releases/download/${ROUNDCUBE_VERSION}/roundcubemail-${ROUNDCUBE_VERSION}-complete.tar.gz \
+ && tar -xzf /tmp/roundcube.tar.gz -C /tmp/ \
+ && mv /tmp/roundcubemail-${ROUNDCUBE_VERSION}/* /var/www/html && \
+    rm -rf installer .git && \
     # Cleanup
-    apt-get remove -y git && apt-get -y autoremove && rm -rf /var/lib/apt/lists/*
+    apt-get -y autoremove && rm -rf /var/lib/apt/lists/*
 
 # App Configuration
 RUN . /etc/apache2/envvars && chown -R ${APACHE_RUN_USER}:${APACHE_RUN_GROUP} /var/www/html/temp /var/www/html/logs
