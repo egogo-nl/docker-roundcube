@@ -70,7 +70,7 @@ $config['support_url'] = '';
 $config['des_key'] = getenv('DES_KEY');
 
 // Name your service. This is displayed on the login screen and in the window title
-$config['product_name'] = 'Webmail';
+$config['product_name'] = 'Webmail | mijn.host';
 
 // ----------------------------------
 // PLUGINS
@@ -90,9 +90,11 @@ $config['spellcheck_engine'] = 'atd';
 
 // compose html formatted messages by default
 // 0 - never, 1 - always, 2 - on reply to HTML message, 3 - on forward or reply to HTML message
-$config['htmleditor'] = 2;
+$config['htmleditor'] = 1;
 
 // default setting if preview pane is enabled
 $config['preview_pane'] = true;
 
+// custom logo for login page
+$config['skin_logo'] = array("elastic:login" => "https://mijn.host/includes/themes/mijn.host/assets/img/svg/logo.svg");
 
