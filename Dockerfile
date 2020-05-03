@@ -27,8 +27,8 @@ RUN rm /etc/apache2/conf-enabled/* /etc/apache2/sites-enabled/* && \
 RUN apt-get update && \
     apt-get install -y git && \
     rm -rf /var/www/html/* && \
-    cd /var/www/html && git clone https://github.com/roundcube/roundcubemail.git . && \
-    git checkout tags/$ROUNDCUBE_VERSION && rm -rf installer .git && \
+    cd /var/www/html && curl https://github.com/roundcube/roundcubemail/releases/download/$ROUNDCUBE_VERSION/roundcubemail-$ROUNDCUBE_VERSION-complete.tar.gz . && \
+    tar -xvf roundcubemail-$ROUNDCUBE_VERSION-complete.tar.gz && rm -rf installer .git && \
     # Cleanup
     apt-get remove -y git && apt-get -y autoremove && rm -rf /var/lib/apt/lists/*
 
